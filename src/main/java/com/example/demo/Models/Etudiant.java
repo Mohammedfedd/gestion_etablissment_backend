@@ -20,6 +20,10 @@ public class Etudiant {
     @Column(name = "note")
     private Map<Module, Integer> notes = new HashMap<>();
 
+    @ManyToOne
+    @JoinColumn(name = "module_id")
+    private Module module;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -51,5 +55,13 @@ public class Etudiant {
 
     public void setNotes(Map<Module, Integer> notes) {
         this.notes = notes;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 }

@@ -29,4 +29,8 @@ public class ModuleService {
     public void supprimerModule(Long id) {
         moduleRepository.deleteById(id);
     }
+
+    public Module mettreAJourModule(Module module) {
+        return moduleRepository.save(module);
+    }
 }

@@ -11,12 +11,11 @@ public class Module {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nom;
+    private String name;
 
     @OneToMany(mappedBy = "module")
     private Set<Etudiant> etudiants = new HashSet<>();
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -25,12 +24,12 @@ public class Module {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<Etudiant> getEtudiants() {
