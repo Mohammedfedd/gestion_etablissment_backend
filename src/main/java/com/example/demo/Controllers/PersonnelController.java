@@ -34,4 +34,23 @@ public class PersonnelController {
     public void supprimerPersonnel(@PathVariable Long id) {
         personnelService.supprimerPersonnel(id);
     }
+
+    @PutMapping("/{id}")
+    public Personnel mettreAJourPersonnel(
+            @PathVariable Long id,
+            @RequestParam String prenom,
+            @RequestParam String nom,
+            @RequestParam String occupation
+    ) {
+        Optional<Personnel> personnelOpt = personnelService.obtenirPersonnelParId(id);
+        if (personnelOpt.isPresent()) {
+            Personnel personnel = personnelOpt.get();
+            personnel.setPrenom(prenom);
+            personnel.setNom(nom);
+            personnel.setOccupation(occupation);
+            return personnelService.ajouterPersonnel(personnel);
+        } else {
+            return null;
+        }
+    }
 }

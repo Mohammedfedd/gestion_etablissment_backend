@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import com.example.demo.Models.Module;
 import com.example.demo.Models.Personnel;
 import com.example.demo.Repositories.PersonnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,9 @@ public class PersonnelService {
     public void supprimerPersonnel(Long id) {
         personnelRepository.deleteById(id);
     }
+
+    public Personnel mettreAJourPersonnel(Personnel personnel) {
+        return personnelRepository.save(personnel);
+    }
+
 }

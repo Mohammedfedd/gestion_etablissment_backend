@@ -29,4 +29,8 @@ public class ProfesseurService {
     public void supprimerProfesseur(Long id) {
         professeurRepository.deleteById(id);
     }
+
+    public Professeur mettreAJourProfesseur(Professeur professeur) {
+        return professeurRepository.save(professeur);
+    }
 }
