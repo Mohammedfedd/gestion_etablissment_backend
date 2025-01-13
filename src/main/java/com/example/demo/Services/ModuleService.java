@@ -33,4 +33,9 @@ public class ModuleService {
     public Module mettreAJourModule(Module module) {
         return moduleRepository.save(module);
     }
+
+    public List<Module> obtenirModulesParNiveau(String niveau) {
+        return moduleRepository.findByNiveau(niveau);
+    }
 }
+

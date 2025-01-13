@@ -13,6 +13,7 @@ public class Etudiant {
 
     private String nom;
     private String prenom;
+    private String niveau;
 
     @ElementCollection
     @CollectionTable(name = "etudiant_notes", joinColumns = @JoinColumn(name = "etudiant_id"))
@@ -21,7 +22,7 @@ public class Etudiant {
     private Map<Module, Integer> notes = new HashMap<>();
 
     @ManyToOne
-    @JoinColumn(name = "module_id")
+    @JoinColumn(name = "module_id")  // This should be the foreign key to the module table
     private Module module;
 
     // Getters and Setters
@@ -55,6 +56,14 @@ public class Etudiant {
 
     public void setNotes(Map<Module, Integer> notes) {
         this.notes = notes;
+    }
+
+    public String getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
     }
 
     public Module getModule() {

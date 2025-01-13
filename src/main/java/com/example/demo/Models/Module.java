@@ -1,8 +1,7 @@
 package com.example.demo.Models;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Module {
@@ -12,9 +11,10 @@ public class Module {
     private Long id;
 
     private String name;
+    private String niveau;
 
     @OneToMany(mappedBy = "module")
-    private Set<Etudiant> etudiants = new HashSet<>();
+    private List<Etudiant> etudiants;
 
     public Long getId() {
         return id;
@@ -32,11 +32,20 @@ public class Module {
         this.name = name;
     }
 
-    public Set<Etudiant> getEtudiants() {
+    public String getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
+    }
+
+    public List<Etudiant> getEtudiants() {
         return etudiants;
     }
 
-    public void setEtudiants(Set<Etudiant> etudiants) {
+    public void setEtudiants(List<Etudiant> etudiants) {
         this.etudiants = etudiants;
     }
 }
+

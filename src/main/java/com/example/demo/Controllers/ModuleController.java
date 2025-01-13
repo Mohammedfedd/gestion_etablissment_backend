@@ -17,9 +17,10 @@ public class ModuleController {
     private ModuleService moduleService;
 
     @PostMapping
-    public Module ajouterModule(@RequestParam String name) {
+    public Module ajouterModule(@RequestParam String name, @RequestParam String niveau) {
         Module module = new Module();
         module.setName(name);
+        module.setNiveau(niveau);
         return moduleService.ajouterModule(module);
     }
 
@@ -39,14 +40,20 @@ public class ModuleController {
     }
 
     @PutMapping("/{id}")
-    public Module mettreAJourModule(@PathVariable Long id, @RequestParam String name) {
+    public Module mettreAJourModule(@PathVariable Long id, @RequestParam String name, @RequestParam String niveau) {
         Optional<Module> moduleOpt = moduleService.obtenirModuleParId(id);
         if (moduleOpt.isPresent()) {
             Module module = moduleOpt.get();
             module.setName(name);
+            module.setNiveau(niveau);
             return moduleService.ajouterModule(module);
         } else {
             return null;
         }
+    }
+
+    @GetMapping("/niveau")
+    public List<Module> obtenirModulesParNiveau(@RequestParam String niveau) {
+        return moduleService.obtenirModulesParNiveau(niveau); // Fetch modules by niveau
     }
 }

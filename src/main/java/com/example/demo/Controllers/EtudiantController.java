@@ -16,7 +16,11 @@ public class EtudiantController {
 
     // Ajouter un étudiant
     @PostMapping
-    public Etudiant ajouterEtudiant(@RequestBody Etudiant etudiant) {
+    public Etudiant ajouterEtudiant(@RequestParam String prenom, @RequestParam String nom, @RequestParam String niveau) {
+        Etudiant etudiant = new Etudiant();
+        etudiant.setPrenom(prenom);
+        etudiant.setNom(nom);
+        etudiant.setNiveau(niveau);
         return etudiantService.ajouterEtudiant(etudiant);
     }
 
@@ -38,29 +42,17 @@ public class EtudiantController {
         etudiantService.supprimerEtudiant(id);
     }
 
-    // Ajouter une note pour un étudiant dans un module
-    @PostMapping("/{etudiantId}/modules/{moduleId}/notes")
-    public Etudiant ajouterNote(
-            @PathVariable Long etudiantId,
-            @PathVariable Long moduleId,
-            @RequestParam Integer note) {
-        return etudiantService.ajouterNote(etudiantId, moduleId, note);
-    }
-
-    // Mettre à jour une note pour un étudiant dans un module
-    @PutMapping("/{etudiantId}/modules/{moduleId}/notes")
-    public Etudiant mettreAJourNote(
-            @PathVariable Long etudiantId,
-            @PathVariable Long moduleId,
-            @RequestParam Integer nouvelleNote) {
-        return etudiantService.mettreAJourNote(etudiantId, moduleId, nouvelleNote);
-    }
-
-    // Supprimer une note pour un étudiant dans un module
-    @DeleteMapping("/{etudiantId}/modules/{moduleId}/notes")
-    public Etudiant supprimerNote(
-            @PathVariable Long etudiantId,
-            @PathVariable Long moduleId) {
-        return etudiantService.supprimerNote(etudiantId, moduleId);
+    // Mettre à jour un étudiant
+    @PutMapping("/{id}")
+    public Etudiant mettreAJourEtudiant(
+            @PathVariable Long id,
+            @RequestParam String prenom,
+            @RequestParam String nom,
+            @RequestParam String niveau) {
+        Etudiant etudiant = etudiantService.obtenirEtudiantParId(id);
+        etudiant.setPrenom(prenom);
+        etudiant.setNom(nom);
+        etudiant.setNiveau(niveau);
+        return etudiantService.mettreAJourEtudiant(etudiant);
     }
 }
